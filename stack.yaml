@@ -1,10 +1,9 @@
-resolver: lts-3.18
+resolver: lts-4.2
 system-ghc: false
 install-ghc: true
 packages:
 - '.'
 extra-deps:
-  - aeson-0.10.0.0
   - attoparsec-0.13.0.1
   - ShellCheck-0.4.1
   - string-qq-0.0.2

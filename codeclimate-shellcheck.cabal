@@ -14,6 +14,10 @@ description:
   You can run it on your command line using the Code Climate CLI, or on our
   hosted analysis platform.
 
+Flag static
+  Description: Enable static linking
+  Default: False
+
 Source-repository head
   type: git
   location: https://github.com/filib/codeclimate-shellcheck
@@ -54,8 +58,11 @@ executable codeclimate-shellcheck
     , codeclimate-shellcheck
     , optparse-applicative
   hs-source-dirs: app
-  ghc-options: -Wall -threaded -rtsopts -with-rtsopts=-N
   default-language: Haskell2010
+  if flag(static)
+    ghc-options: -Wall -Werror -static -optl-static -optl-pthread
+  else
+    ghc-options: -Wall -Werror
 
 test-suite codeclimate-shellcheck-test
   main-is:

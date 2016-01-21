@@ -18,4 +18,4 @@ docker run --rm -v "$PWD/.local:/root/.local"               \
                 -v "$PWD/.stack-work:/home/app/.stack-work" \
                 -v "$HOME/.stack:/root/.stack"              \
                 codeclimate-shellcheck-build:latest         \
-                stack install --force-dirty
+                stack install --flag codeclimate-shellcheck:static --force-dirty

@@ -70,7 +70,7 @@ isShellScript path =
 -- | Retrieve shell scripts for a list of paths.
 findShellScripts :: [FilePath] -> IO [FilePath]
 findShellScripts paths = do
-  dotShFiles <- concat . fst <$> globDir patterns "."
+  dotShFiles <- concat <$> globDir patterns "."
   allScripts <- filterM validateScript $! dotShFiles ++ otherFiles
   return $ fmap clean allScripts
   where

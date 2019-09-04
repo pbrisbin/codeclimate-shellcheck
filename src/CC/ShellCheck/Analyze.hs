@@ -1,5 +1,4 @@
 {-# LANGUAGE OverloadedStrings #-}
-{-# LANGUAGE RecordWildCards #-}
 
 module CC.ShellCheck.Analyze where
 
@@ -8,7 +7,6 @@ import           CC.ShellCheck.Types as CC
 import           CC.Types as CC
 import           Control.Exception.Base
 import qualified Data.Map.Strict as DM
-import           Data.Monoid
 import qualified Data.Text as T
 import           ShellCheck.Checker
 import           ShellCheck.Interface
@@ -26,7 +24,11 @@ analyze env path = do
     checkSpec x = emptyCheckSpec { csFilename = path, csScript = x }
 
     interface :: SystemInterface IO
-    interface = SystemInterface { siReadFile = defaultInterface }
+    interface = SystemInterface
+        { siReadFile = defaultInterface
+        , siFindSource = error "TODO"
+        , siGetConfig = error "TODO"
+        }
 
 --------------------------------------------------------------------------------
 
